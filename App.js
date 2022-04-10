@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NativeBaseProvider, extendTheme,StatusBar } from 'native-base';
+import Navigation from './src/navigation';
+import CommentSection from './src/components/CommentSection';
+
+const config = {
+    useSystemColorMode: false,
+    initialColorMode: "dark"
+}
+const customTheme = extendTheme({config});
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <StatusBar backgroundColor="#070709" />
+      <NativeBaseProvider theme={customTheme}>
+        <Navigation />
+      </NativeBaseProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
